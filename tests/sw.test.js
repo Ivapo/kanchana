@@ -44,7 +44,10 @@ describe("VER-06 manifest is valid JSON with required fields", () => {
     // Relative start_url so a project-page deployment (under /kanchana/)
     // resolves it against the manifest URL, not the domain root.
     expect(m.start_url).toBe("./");
-    expect(m.display).toBe("standalone");
+    // fullscreen removes the installed-PWA title bar on desktop browsers;
+    // browsers that don't support it fall back through display_override.
+    expect(m.display).toBe("fullscreen");
+    expect(m.display_override).toEqual(["fullscreen", "standalone"]);
     expect(Array.isArray(m.icons)).toBe(true);
     expect(m.icons.length).toBeGreaterThanOrEqual(2);
     for (const icon of m.icons) {
