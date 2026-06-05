@@ -1,0 +1,18 @@
+{
+  "name": "kanchana",
+  "version": "0.1.0",
+  "description": "Kanchana — turn an iPad into a decorative/utility lamp PWA.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run server.js",
+    "start": "bun run server.js",
+    "test": "bun test",
+    "verify": "bun test && echo '\\nAutomated suite passed. See VERIFICATION.md for manual checks.'",
+    "icons": "bun run scripts/make-icons.js",
+    "ccusage": "bunx ccusage"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  }
+}

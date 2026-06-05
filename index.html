@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <!--
+    Why viewport-fit=cover + no user-scalable: this is a lamp. Pinch-zooming
+    the surface or seeing the home-indicator inset frame the color would break
+    the illusion. The full-bleed safe area is intentional.
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Kanchana" />
+  <title>Kanchana</title>
+
+  <!--
+    All asset paths are RELATIVE (./foo) so the same build works at the dev
+    server root (http://localhost:5173/) AND under a GitHub Pages project
+    subpath (https://ivapo.github.io/kanchana/). Absolute paths (/foo) would
+    point at the domain root and 404 under the project path.
+  -->
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+
+  <link rel="stylesheet" href="./styles/main.css" />
+</head>
+<body>
+  <!--
+    @capability: surface-color
+    @verifies: VER-01
+    The surface IS the lamp. Everything else floats on top.
+  -->
+  <main id="surface" class="surface" aria-label="Lamp surface"></main>
+
+  <!--
+    @capability: controls-autohide
+    @verifies: VER-07
+  -->
+  <section id="panel" class="panel" aria-label="Lamp controls">
+    <div class="row">
+      <label for="warmth">Warmth</label>
+      <input id="warmth" type="range" />
+      <span id="warmth-label" class="value">—</span>
+    </div>
+    <div class="row">
+      <label for="brightness">Brightness</label>
+      <input id="brightness" type="range" />
+      <span id="brightness-label" class="value">—</span>
+    </div>
+    <div class="row presets">
+      <button type="button" data-preset="candle">Candle</button>
+      <button type="button" data-preset="warm">Warm</button>
+      <button type="button" data-preset="daylight">Daylight</button>
+      <button type="button" data-preset="cool">Cool</button>
+    </div>
+    <div class="row wake">
+      <label for="wake-toggle">
+        <input id="wake-toggle" type="checkbox" />
+        Keep screen on
+      </label>
+      <span id="wake-status" class="status"></span>
+    </div>
+  </section>
+
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>

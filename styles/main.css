@@ -1,0 +1,96 @@
+/*
+  Kanchana styles. Two concerns only:
+  1. Surface fills the entire viewport, edge-to-edge, behind safe-area insets.
+  2. Floating control panel that fades out cleanly.
+*/
+
+:root {
+  color-scheme: dark;
+  --panel-bg: rgba(0, 0, 0, 0.55);
+  --panel-fg: #f4f4f4;
+  --panel-radius: 18px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/*
+  The surface element provides the lamp color. position:fixed + inset:0 plus
+  viewport-fit=cover in the meta tag means the color bleeds into the home-
+  indicator and notch insets on iPad — exactly what we want for a lamp.
+*/
+#surface.surface {
+  position: fixed;
+  inset: 0;
+  background-color: rgb(255, 200, 130); /* sane default before JS runs */
+  transition: background-color 120ms linear;
+  z-index: 0;
+}
+
+/*
+  Panel: a glassy card pinned to the bottom-center with safe-area padding.
+  Auto-hide is a class toggle so CSS owns the transition.
+*/
+#panel.panel {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+  transform: translateX(-50%);
+  width: min(640px, calc(100% - 32px));
+  padding: 14px 16px;
+  background: var(--panel-bg);
+  color: var(--panel-fg);
+  border-radius: var(--panel-radius);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+#panel.is-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  pointer-events: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.row label { min-width: 92px; font-size: 14px; opacity: 0.9; }
+.row .value { min-width: 56px; font-variant-numeric: tabular-nums; text-align: right; font-size: 13px; opacity: 0.8; }
+.row input[type="range"] { flex: 1; }
+
+.row.presets { gap: 8px; flex-wrap: wrap; }
+.row.presets button {
+  flex: 1 1 auto;
+  min-width: 80px;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--panel-fg);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+}
+.row.presets button:active { background: rgba(255, 255, 255, 0.22); }
+
+.row.wake { font-size: 13px; }
+.row.wake label { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.row.wake .status { margin-left: auto; opacity: 0.7; font-size: 12px; }
