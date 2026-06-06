@@ -52,13 +52,45 @@ Snapshot taken **2026-06-05 ~00:42 local** — mid-session, so these numbers
 will keep ticking up as long as we are still talking. They are the honest
 "cost so far". Source: `bunx ccusage session --since 20260605 --json`.
 
+### v1 (initial build — VER-01..07 + VER-13)
+
 | Date       | Session (id)                              | Input | Output  | Cache create | Cache read   | Total       | Cost (USD) |
 | ---------- | ----------------------------------------- | ----- | ------- | ------------ | ------------ | ----------- | ---------- |
 | 2026-06-05 | `8c53d229-76e4-47a6-a913-873f59d1349d`    | 108   | 47,401  | 144,563      | 4,919,395    | 5,111,467   | $4.55      |
 
 **Total to reach v1 (snapshot):** **5,111,467 tokens / $4.55** (single
-session, `claude-opus-4-7`). Re-run `bunx ccusage session --since 20260605`
-to see the final figure once this session ends.
+session, `claude-opus-4-7`). The session continued past this snapshot;
+re-running `bunx ccusage session -i 8c53d229-76e4-47a6-a913-873f59d1349d`
+on 2026-06-05 returns the final v1 figure (**6,604,044 tokens / $5.55**).
+
+### v2 (VER-08 custom slots + VER-09 timer fade + VER-10 candle flicker)
+
+| Date       | Session (id)                              | Input | Output  | Cache create | Cache read   | Total       | Cost (USD) |
+| ---------- | ----------------------------------------- | ----- | ------- | ------------ | ------------ | ----------- | ---------- |
+| 2026-06-05 | `34864658-ab92-4955-af8b-42cc3af71bd8`    | 63    | 30,016  | 99,316       | 3,429,768    | 3,559,163   | $3.09      |
+
+**Total to reach v2 (snapshot):** **3,559,163 tokens / $3.09** for **three**
+new verified capabilities (single session, `claude-opus-4-7`). Same caveat
+as v1: re-run `bunx ccusage session -i 34864658-ab92-4955-af8b-42cc3af71bd8`
+after the session closes for the final figure.
+
+### Tokens per verified capability
+
+A first-order "what does it cost to add one verifiable capability to this
+codebase?" view. Numerator is the session total above; denominator is the
+number of `VER-NN` rows that session added to `VERIFICATION.md`.
+
+| Cohort | Session total | Capabilities | Tokens / capability | Cost / capability |
+| ------ | ------------- | ------------ | ------------------- | ----------------- |
+| v1     | 5,111,467     | 8 (VER-01..07 + VER-13) | ~639,000      | ~$0.57            |
+| v2     | 3,559,163     | 3 (VER-08, VER-09, VER-10) | ~1,186,000 | ~$1.03            |
+
+Don't over-read the v1 figure: most v1 VER rows are small (a CSS shape,
+a manifest field) sharing one big pure-color module — high amortisation
+inflates the "capabilities" denominator. v2's three capabilities are each
+their own pure module + dedicated test file + UI wiring, which is closer
+to "one capability = one feature" — so the v2 per-capability cost is the
+more honest number to quote when scoping future work.
 
 ### How to read this row
 

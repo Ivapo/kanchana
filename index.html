@@ -62,6 +62,45 @@
       </label>
       <span id="wake-status" class="status"></span>
     </div>
+
+    <!--
+      @capability: custom-slots
+      @verifies: VER-08
+    -->
+    <div class="row slots">
+      <label for="slot-name">Save as</label>
+      <input id="slot-name" type="text" placeholder="Slot name" maxlength="40" autocomplete="off" />
+      <button type="button" id="slot-save">Save</button>
+    </div>
+    <div class="row slot-list" id="slot-list" aria-label="Saved slots"></div>
+
+    <!--
+      @capability: timer-fade
+      @verifies: VER-09
+    -->
+    <div class="row timer">
+      <label for="timer-minutes">Timer</label>
+      <input id="timer-minutes" type="number" min="1" max="180" step="1" value="20" />
+      <span class="unit">min</span>
+      <input id="timer-fade" type="number" min="0" max="60" step="1" value="5" title="Fade window (minutes)" />
+      <span class="unit">fade</span>
+      <button type="button" id="timer-out">Fade-out</button>
+      <button type="button" id="timer-in">Sunrise</button>
+      <button type="button" id="timer-cancel" disabled>Cancel</button>
+      <span id="timer-status" class="status"></span>
+    </div>
+
+    <!--
+      @capability: candle-flicker
+      @verifies: VER-10
+    -->
+    <div class="row flicker">
+      <label for="flicker-toggle">
+        <input id="flicker-toggle" type="checkbox" />
+        Candle flicker
+      </label>
+      <span id="flicker-status" class="status"></span>
+    </div>
   </section>
 
   <script type="module" src="./src/app.js"></script>

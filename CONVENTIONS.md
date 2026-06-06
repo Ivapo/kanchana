@@ -38,6 +38,9 @@ rename without doing a repo-wide sweep.
 | `pwa-install`            | `manifest.webmanifest`, `sw.js`, `index.html`, `scripts/make-icons.js` |
 | `offline-cache`          | `sw.js`, `tests/sw.test.js`                      |
 | `dev-server`             | `server.js`                                      |
+| `custom-slots`           | `src/slots.js`, `src/app.js`, `tests/slots.test.js`   |
+| `timer-fade`             | `src/fade.js`,  `src/app.js`, `tests/fade.test.js`    |
+| `candle-flicker`         | `src/flicker.js`, `src/app.js`, `tests/flicker.test.js` |
 
 ## Verification IDs
 

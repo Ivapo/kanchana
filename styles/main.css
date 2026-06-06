@@ -94,3 +94,82 @@ html, body {
 .row.wake { font-size: 13px; }
 .row.wake label { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
 .row.wake .status { margin-left: auto; opacity: 0.7; font-size: 12px; }
+
+/*
+  Slots, timer, flicker. Same panel idiom: dense, readable, no surprises.
+  Inputs/buttons inherit the panel's dark glassy look.
+*/
+.row.slots input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--panel-fg);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+.row.slots button,
+.row.timer button,
+.row.flicker button {
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--panel-fg);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+}
+.row.slots button:active,
+.row.timer button:active { background: rgba(255, 255, 255, 0.22); }
+.row.timer button:disabled { opacity: 0.4; }
+
+.row.slot-list { gap: 6px; flex-wrap: wrap; }
+.row.slot-list:empty { display: none; }
+.slot-wrap {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+.slot-chip {
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--panel-fg);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.slot-del {
+  padding: 4px 10px;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--panel-fg);
+  background: rgba(0, 0, 0, 0.25);
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+}
+
+.row.timer input[type="number"] {
+  width: 56px;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--panel-fg);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  text-align: right;
+}
+.row.timer .unit { font-size: 12px; opacity: 0.7; }
+.row.timer .status { margin-left: auto; opacity: 0.7; font-size: 12px; }
+
+.row.flicker { font-size: 13px; }
+.row.flicker label { display: inline-flex; align-items: center; gap: 8px; }
+.row.flicker .status { margin-left: auto; opacity: 0.7; font-size: 12px; }

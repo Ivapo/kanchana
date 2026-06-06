@@ -13,7 +13,7 @@
 // resolves relative URLs against the SW's own URL, which is exactly the
 // scope we want to cache.
 
-const CACHE_VERSION = "kanchana-v1";
+const CACHE_VERSION = "kanchana-v2";
 const PRECACHE = [
   "./",
   "./index.html",
@@ -23,6 +23,9 @@ const PRECACHE = [
   "./src/color.js",
   "./src/ui.js",
   "./src/wakelock.js",
+  "./src/slots.js",
+  "./src/fade.js",
+  "./src/flicker.js",
   "./icons/icon.svg",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
